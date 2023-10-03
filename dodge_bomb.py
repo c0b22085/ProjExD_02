@@ -1,7 +1,7 @@
 import random
 import sys
 import pygame as pg
-
+import time
 
 WIDTH, HEIGHT = 1600, 900
 
@@ -37,6 +37,7 @@ def main():
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
     kk_rct = kk_img.get_rect()
     kk_rct.center = (900, 400)  # 練習３：こうかとんの初期座標を設定する
+
     """ばくだん"""
     bd_img= pg.Surface((20,20)) #練習１：爆弾Surfaceを作成する
     bd_img.set_colorkey((0,0,0))
@@ -52,12 +53,16 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
-
+        screen.blit(bg_img, [0, 0])
         if kk_rct.colliderect(bd_rct):  # 練習５：ぶつかってたら
             print("ゲームオーバー")
+            kk_img = pg.image.load("ex02/fig/3.png")
+            kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
+            screen.blit(kk_img, kk_rct) 
+            pg.display.update()
+            time.sleep(3)
             return
         
-        screen.blit(bg_img, [0, 0])
 
         """こうかとん"""
         key_lst = pg.key.get_pressed()
