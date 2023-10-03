@@ -53,14 +53,16 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
+            
         screen.blit(bg_img, [0, 0])
+
         if kk_rct.colliderect(bd_rct):  # 練習５：ぶつかってたら
             print("ゲームオーバー")
             kk_img = pg.image.load("ex02/fig/3.png")
             kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
-            screen.blit(kk_img, kk_rct) 
+            screen.blit(kk_img, kk_rct) #こうかとん画像が切り替わる
             pg.display.update()
-            time.sleep(3)
+            time.sleep(3) #3秒処理を停止する
             return
         
 
